@@ -39,6 +39,8 @@
     "@stackbit/cms-git": "^1.0.32",
     "@stackbit/types": "^2.0.1",
     "@tailwindcss/postcss": "^4.0.16",
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^20.0.0",
     "@types/react": "19.1.9",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.1.4",
