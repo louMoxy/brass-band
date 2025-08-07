@@ -2,18 +2,29 @@
 @plugin '@tailwindcss/typography';
 
 @theme static {
-  --color-primary: var(--theme-primary);
-  --color-gradient-1: var(--theme-gradient-1);
-  --color-gradient-2: var(--theme-gradient-2);
-  --color-gradient-3: var(--theme-gradient-3);
-  --color-gradient-4: var(--theme-gradient-4);
+  --warm-brown: #8B4513;
+  --deep-forest: #2F4F2F;
+  --irish-gold: #DAA520;
+  --warm-cream: #F5F5DC;
+  --heritage-red: #B22222;
+  
+  --color-primary: var(--irish-gold);
+  --color-gradient-1: var(--warm-brown);
+  --color-gradient-2: var(--deep-forest);
+  --color-gradient-3: var(--irish-gold);
+  --color-gradient-4: var(--heritage-red);
+  --color-accent: var(--warm-cream);
   --font-primary: var(--theme-headings);
   --font-secondary: var(--theme-body);
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @layer base {
+  body {
+    background-color: #fefcf7;
+    color: var(--warm-brown);
+    font-family: var(--font-secondary);
+  }
+
   h1,
   h2,
   h3,
@@ -21,9 +32,43 @@
   h5,
   h6 {
     font-family: var(--font-primary);
+    color: var(--warm-brown);
   }
 
-  body {
-    font-family: var(--font-secondary);
+  /* Custom color utilities */
+  .text-warm-brown { color: var(--warm-brown); }
+  .text-deep-forest { color: var(--deep-forest); }
+  .text-irish-gold { color: var(--irish-gold); }
+  .text-warm-cream { color: var(--warm-cream); }
+  .text-heritage-red { color: var(--heritage-red); }
+  
+  .bg-warm-brown { background-color: var(--warm-brown); }
+  .bg-deep-forest { background-color: var(--deep-forest); }
+  .bg-irish-gold { background-color: var(--irish-gold); }
+  .bg-warm-cream { background-color: var(--warm-cream); }
+  .bg-heritage-red { background-color: var(--heritage-red); }
+
+  .border-warm-brown { border-color: var(--warm-brown); }
+  .border-deep-forest { border-color: var(--deep-forest); }
+  .border-irish-gold { border-color: var(--irish-gold); }
+  .border-warm-cream { border-color: var(--warm-cream); }
+  .border-heritage-red { border-color: var(--heritage-red); }
+
+  /* Animated gradient button */
+  .btn-gradient {
+    position: relative;
+    background: linear-gradient(45deg, var(--irish-gold), var(--heritage-red), var(--irish-gold));
+    background-size: 200% 200%;
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(218, 165, 32, 0.4);
+  }
+
+  .btn-gradient:active {
+    transform: translateY(0);
   }
 }

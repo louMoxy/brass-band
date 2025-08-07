@@ -12,7 +12,7 @@ class MyDocument extends Document {
           <style>{`:root{${cssVars}}`}</style>
         </Head>
         <body
-          className={`antialiased text-lg bg-white dark:bg-gray-900 dark:text-white leading-base`}
+          className={`antialiased text-lg bg-white text-gunmetal leading-base`}
         >
           <Main />
           <NextScript />
