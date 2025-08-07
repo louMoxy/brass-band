@@ -8,7 +8,7 @@ export default function Index({ globalData }) {
     <Layout>
       <SEO 
         title="Graiguenamanagh Brass Band - 260+ Years of Music" 
-        description="Welcome to the Graiguenamanagh Brass Band, believed to be the oldest continuously performing brass band in Ireland. Founded in 1760, we've been making music for over 260 years."
+        description="Welcome to the Graiguenamanagh Brass Band, believed to be the oldest continuously performing brass band in Ireland. Founded in 1760, we&apos;ve been making music for over 260 years."
       />
       
       <div className="w-full max-w-5xl mx-auto px-6 py-12">
@@ -56,14 +56,14 @@ export default function Index({ globalData }) {
               </p>
               
               <blockquote className="border-l-4 border-light-sea-green pl-6 italic text-xl text-gunmetal bg-light-sky-blue/10 py-4 rounded-r-lg">
-                "The band is something alive. It walks with us through the town. 
-                It changes. It grows. And it keeps playing."
+                &quot;The band is something alive. It walks with us through the town. 
+                It changes. It grows. And it keeps playing.&quot;
               </blockquote>
               
               <p className="text-lg leading-relaxed text-dark-slate-gray">
                 From first-time players to seasoned musicians, we welcome all ages and abilities. 
                 Whether you want to pick up an instrument, reconnect with your musical roots, 
-                or simply enjoy our performances, there's a place for you here.
+                or simply enjoy our performances, there&apos;s a place for you here.
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function Index({ globalData }) {
           </div>
           
           <div className="text-center mt-8">
-            <a 
+            <Link 
               href="/gallery" 
               className="inline-flex items-center text-irish-gold hover:text-heritage-red font-medium transition-all duration-200 hover:underline underline-offset-2 hover:scale-105"
             >
@@ -196,7 +196,7 @@ export default function Index({ globalData }) {
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -206,8 +206,8 @@ export default function Index({ globalData }) {
             Ready to Make Music With Us?
           </h3>
           <p className="text-lg text-dark-slate-gray mb-8 max-w-2xl mx-auto">
-            Join a tradition that's been thriving for over 260 years. Whether you're a beginner 
-            or an experienced musician, we'd love to welcome you to our musical family.
+            Join a tradition that&apos;s been thriving for over 260 years. Whether you&apos;re a beginner 
+            or an experienced musician, we&apos;d love to welcome you to our musical family.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
               <Link

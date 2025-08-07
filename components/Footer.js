@@ -36,7 +36,7 @@ export default function Footer({ copyrightText }) {
               Graiguenamanagh Brass Band
             </h3>
             <p className="text-warm-cream/90 mb-4 leading-relaxed">
-              Ireland's oldest continuously performing brass band, making music for over 260 years 
+              Ireland&apos;s oldest continuously performing brass band, making music for over 260 years 
               in the heart of Kilkenny.
             </p>
             <div className="space-y-2 text-sm">

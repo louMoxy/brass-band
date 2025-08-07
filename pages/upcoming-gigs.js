@@ -1,5 +1,6 @@
 import Layout, { GradientBackground } from '../components/Layout';
 import SEO from '../components/SEO';
+import Link from 'next/link';
 import { getGlobalData } from '../utils/global-data';
 
 export default function UpcomingGigs({ globalData }) {
@@ -204,7 +205,7 @@ export default function UpcomingGigs({ globalData }) {
             <div className="prose prose-lg max-w-none mb-8">
               <p className="text-lg leading-relaxed text-dark-slate-gray mb-6">
                 Looking to add the magic of live brass band music to your special occasion? 
-                We're available for weddings, community events, religious services, and private celebrations.
+                We&apos;re available for weddings, community events, religious services, and private celebrations.
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 text-center">
@@ -229,7 +230,7 @@ export default function UpcomingGigs({ globalData }) {
             </div>
             
             <div className="flex flex-wrap justify-center gap-4">
-              <a 
+              <Link 
                 href="/contact" 
                 className="btn-gradient inline-flex items-center px-6 py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg"
               >
@@ -237,9 +238,9 @@ export default function UpcomingGigs({ globalData }) {
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
               
-              <a 
+              <Link 
                 href="/music" 
                 className="inline-flex items-center px-6 py-3 bg-warm-cream/80 text-warm-brown font-semibold rounded-lg border border-irish-gold/30 hover:bg-irish-gold/20 hover:shadow-lg transition-all duration-200 hover:scale-105"
               >
@@ -247,7 +248,7 @@ export default function UpcomingGigs({ globalData }) {
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

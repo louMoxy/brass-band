@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Layout, { GradientBackground } from '../components/Layout';
 import SEO from '../components/SEO';
+import Link from 'next/link';
 import { getGlobalData } from '../utils/global-data';
 
 export default function Contact({ globalData }) {
@@ -47,8 +48,8 @@ export default function Contact({ globalData }) {
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-light-sea-green to-air-force-blue mx-auto rounded-full mb-6"></div>
           <p className="text-lg text-dark-slate-gray max-w-3xl mx-auto">
-            Get in touch with us! Whether you're interested in joining the band, booking us for an event, 
-            or just want to share your love of brass band music, we'd love to hear from you.
+            Get in touch with us! Whether you&apos;re interested in joining the band, booking us for an event, 
+            or just want to share your love of brass band music, we&apos;d love to hear from you.
           </p>
         </div>
 
@@ -156,7 +157,7 @@ export default function Contact({ globalData }) {
                   <svg className="w-5 h-5 text-light-sea-green mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  <p className="text-gunmetal font-medium">Thank you for your message! We'll get back to you soon.</p>
+                  <p className="text-gunmetal font-medium">Thank you for your message! We&apos;ll get back to you soon.</p>
                 </div>
               </div>
             )}
@@ -288,7 +289,7 @@ export default function Contact({ globalData }) {
             No experience necessary - we welcome musicians of all abilities!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a 
+            <Link 
               href="/about" 
               className="btn-gradient inline-flex items-center px-6 py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg"
             >
@@ -296,9 +297,9 @@ export default function Contact({ globalData }) {
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
+            </Link>
             
-            <a 
+            <Link 
               href="/music" 
               className="inline-flex items-center px-6 py-3 bg-warm-cream/80 text-warm-brown font-semibold rounded-lg border border-irish-gold/30 hover:bg-irish-gold/20 hover:shadow-lg transition-all duration-200 hover:scale-105"
             >
@@ -306,7 +307,7 @@ export default function Contact({ globalData }) {
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

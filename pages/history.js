@@ -1,5 +1,6 @@
 import Layout, { GradientBackground } from '../components/Layout';
 import SEO from '../components/SEO';
+import Link from 'next/link';
 import { getGlobalData } from '../utils/global-data';
 
 export default function History({ globalData }) {
@@ -29,7 +30,7 @@ export default function History({ globalData }) {
       year: '1912',
       era: 'Early 20th Century',
       title: 'Titanic Memorial',
-      description: 'Under band leader Willie Flood, the band solemnly played the "Dead March" through the town after the sinking of the Titanic.',
+      description: 'Under band leader Willie Flood, the band solemnly played the &quot;Dead March&quot; through the town after the sinking of the Titanic.',
       details: 'Willie Flood joined in the early 1900s and remained involved for most of his life. This moment is still remembered in local lore.'
     },
     {
@@ -44,20 +45,20 @@ export default function History({ globalData }) {
       era: 'Mid-20th Century',
       title: 'Mount Brandon Performance',
       description: 'For the Marian Year, the band climbed Mount Brandon to play beneath a newly raised wooden cross.',
-      details: '"We weren\'t tired; we were young and full of craic," recalled Noel Coady, who played second cornet as a teenager that year.'
+      details: '&quot;We weren&apos;t tired; we were young and full of craic,&quot; recalled Noel Coady, who played second cornet as a teenager that year.'
     },
     {
       year: '1970s-80s',
       era: 'Challenging Times',
       title: 'Keeping the Dream Alive',
       description: 'Numbers dwindled, and at times only a handful of players turned up to rehearsals. But the band never folded.',
-      details: '"There was always someone who would turn the key in the door. Even if it was just a few of us, we kept it going."'
+      details: '&quot;There was always someone who would turn the key in the door. Even if it was just a few of us, we kept it going.&quot;'
     },
     {
       year: '2014',
       era: 'Modern Revival',
       title: 'New Rehearsal Space',
-      description: 'A new rehearsal space was officially opened by then-Minister Phil Hogan, who praised the band as "a vital part of our heritage."',
+      description: 'A new rehearsal space was officially opened by then-Minister Phil Hogan, who praised the band as &quot;a vital part of our heritage.&quot;',
       details: 'The 21st century has seen a quiet revival, with support from local arts groups and a fiercely loyal community.'
     },
     {
@@ -103,8 +104,8 @@ export default function History({ globalData }) {
               </p>
               
               <blockquote className="border-l-4 border-light-sea-green pl-6 my-8 italic text-xl text-gunmetal bg-light-sky-blue/10 py-6 rounded-r-lg">
-                "People say tradition is something fixed, but for us, it's something alive. 
-                It walks with us through the town. It changes. It grows. And it keeps playing."
+                &quot;People say tradition is something fixed, but for us, it&apos;s something alive. 
+                It walks with us through the town. It changes. It grows. And it keeps playing.&quot;
               </blockquote>
             </div>
           </div>
@@ -172,19 +173,19 @@ export default function History({ globalData }) {
             
             <div className="prose prose-lg max-w-none">
               <p className="text-lg leading-relaxed text-dark-slate-gray mb-6">
-                Ask any local, and they'll tell you: the Graiguenamanagh Brass Band is more than just music. 
-                <strong className="text-light-sea-green"> It's the sound of home.</strong>
+                Ask any local, and they&apos;ll tell you: the Graiguenamanagh Brass Band is more than just music. 
+                <strong className="text-light-sea-green"> It&apos;s the sound of home.</strong>
               </p>
               
               <p className="text-lg leading-relaxed text-dark-slate-gray mb-8">
                 The repertoire has expanded too. Alongside marches and hymns are modern arrangements and Irish ballads. 
-                It's not unusual to hear a medley that jumps from "O Danny Boy" to Coldplay — 
-                with a stop at "The Rose of Mooncoin" along the way.
+                It&apos;s not unusual to hear a medley that jumps from &quot;O Danny Boy&quot; to Coldplay — 
+                with a stop at &quot;The Rose of Mooncoin&quot; along the way.
               </p>
             </div>
             
             <div className="flex flex-wrap justify-center gap-4">
-              <a 
+              <Link 
                 href="/about" 
                 className="btn-gradient inline-flex items-center px-6 py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg"
               >
@@ -192,9 +193,9 @@ export default function History({ globalData }) {
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
               
-              <a 
+              <Link 
                 href="/music" 
                 className="inline-flex items-center px-6 py-3 bg-warm-cream/80 text-warm-brown font-semibold rounded-lg border border-irish-gold/30 hover:bg-irish-gold/20 hover:shadow-lg transition-all duration-200 hover:scale-105"
               >
@@ -202,7 +203,7 @@ export default function History({ globalData }) {
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

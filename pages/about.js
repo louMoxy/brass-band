@@ -1,5 +1,6 @@
 import Layout, { GradientBackground } from '../components/Layout';
 import SEO from '../components/SEO';
+import Link from 'next/link';
 import { getGlobalData } from '../utils/global-data';
 
 export default function About({ globalData }) {
@@ -25,20 +26,20 @@ export default function About({ globalData }) {
           <div className="space-y-6">
             <div className="prose prose-lg max-w-none">
               <p className="text-lg leading-relaxed text-dark-slate-gray">
-                The Graiguenamanagh Brass Band is more than music — it's a living part of our town. 
+                The Graiguenamanagh Brass Band is more than music — it&apos;s a living part of our town. 
                 From first-time players to seasoned musicians, we welcome all ages and abilities to 
                 share in something truly special.
               </p>
               
               <blockquote className="border-l-4 border-light-sea-green pl-6 my-8 italic text-xl text-gunmetal bg-light-sky-blue/10 py-4 rounded-r-lg">
-                "The band is something alive. It walks with us through the town. It changes. 
-                It grows. And it keeps playing."
+                &quot;The band is something alive. It walks with us through the town. It changes. 
+                It grows. And it keeps playing.&quot;
               </blockquote>
               
               <p className="text-lg leading-relaxed text-dark-slate-gray">
                 Whether you want to pick up an instrument, reconnect with your musical roots, or 
-                enjoy powerful performances throughout the year, there's a place for you here. 
-                Come be part of the tradition that's shaping the future — one note at a time.
+                enjoy powerful performances throughout the year, there&apos;s a place for you here. 
+                Come be part of the tradition that&apos;s shaping the future — one note at a time.
               </p>
             </div>
           </div>
@@ -105,7 +106,7 @@ export default function About({ globalData }) {
               </p>
             </div>
             <div className="mt-6">
-              <a 
+              <Link 
                 href="/contact" 
                 className="btn-gradient inline-flex items-center px-6 py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg"
               >
@@ -113,7 +114,7 @@ export default function About({ globalData }) {
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Layout, { GradientBackground } from '../components/Layout';
 import SEO from '../components/SEO';
+import Link from 'next/link';
 import { getGlobalData } from '../utils/global-data';
 
 export default function Music({ globalData }) {
@@ -53,7 +54,7 @@ export default function Music({ globalData }) {
               
               <div className="prose prose-lg max-w-none text-center">
                 <p className="text-lg leading-relaxed text-dark-slate-gray mb-6">
-                  Spanning several decades and many styles, the band's repertoire is ever growing with 
+                  Spanning several decades and many styles, the band&apos;s repertoire is ever growing with 
                   <span className="font-semibold text-light-sea-green"> over 500 charts</span> in our library.
                 </p>
                 
@@ -64,8 +65,8 @@ export default function Music({ globalData }) {
                 </p>
                 
                 <blockquote className="border-l-4 border-light-sea-green pl-6 my-8 italic text-xl text-gunmetal bg-light-sky-blue/10 py-6 rounded-r-lg">
-                  "It's not unusual to hear a medley that jumps from 'O Danny Boy' to Coldplay — 
-                  with a stop at 'The Rose of Mooncoin' along the way."
+                  &quot;It&apos;s not unusual to hear a medley that jumps from &apos;O Danny Boy&apos; to Coldplay — 
+                  with a stop at &apos;The Rose of Mooncoin&apos; along the way.&quot;
                 </blockquote>
               </div>
             </div>
@@ -177,7 +178,7 @@ export default function Music({ globalData }) {
           <p className="text-dark-slate-gray mb-6 max-w-2xl mx-auto">
             Check out our upcoming performances and events. Nothing beats the experience of live brass band music!
           </p>
-          <a 
+          <Link 
             href="/upcoming-gigs" 
             className="btn-gradient inline-flex items-center px-6 py-3 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-lg"
           >
@@ -185,7 +186,7 @@ export default function Music({ globalData }) {
             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
 
