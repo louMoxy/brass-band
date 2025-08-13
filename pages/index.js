@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Layout, { GradientBackground } from '../components/Layout';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
+import Image from 'next/image';
 
 export default function Index({ globalData }) {
   return (
@@ -33,10 +34,7 @@ export default function Index({ globalData }) {
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
               <div className="w-full h-full bg-gradient-to-br from-gunmetal via-dark-slate-gray to-light-sea-green flex items-center justify-center">
                 <div className="text-center p-8">
-                  <svg className="w-16 h-16 mx-auto mb-4 text-white opacity-80" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-white text-lg font-medium mb-2">Band in Performance</p>
+                  <Image src="/images/Band-4.jpeg" alt="Band in Performance" fill={true} />
                 </div>
               </div>
             </div>
@@ -137,51 +135,39 @@ export default function Index({ globalData }) {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
             {/* Image 1 */}
-            <div className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
-              <div className="w-full h-full bg-gradient-to-br from-light-sea-green/30 to-air-force-blue/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <div className="relative aspect-square w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-light-sea-green/30 to-air-force-blue/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
-                  <svg className="w-8 h-8 mx-auto mb-2 text-air-force-blue opacity-70" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-gunmetal text-xs font-medium">Performance</p>
+                  <Image src="/images/Band-art-1.jpeg" alt="Band in Performance" fill={true} className="object-cover" />
                 </div>
               </div>
             </div>
 
             {/* Image 2 */}
-            <div className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
-              <div className="w-full h-full bg-gradient-to-br from-air-force-blue/30 to-light-sky-blue/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <div className="relative aspect-square w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-air-force-blue/30 to-light-sky-blue/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
-                  <svg className="w-8 h-8 mx-auto mb-2 text-air-force-blue opacity-70" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-gunmetal text-xs font-medium">Rehearsal</p>
+                <Image src="/images/Band-5.jpg" alt="Band in Performance" fill={true} className="object-cover" />
                 </div>
               </div>
             </div>
 
             {/* Image 3 */}
-            <div className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
-              <div className="w-full h-full bg-gradient-to-br from-gunmetal/20 to-dark-slate-gray/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <div className="relative aspect-square w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-gunmetal/20 to-dark-slate-gray/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
-                  <svg className="w-8 h-8 mx-auto mb-2 text-air-force-blue opacity-70" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-gunmetal text-xs font-medium">Community</p>
+                  <Image src="/images/Band-2.jpg" alt="Band in Performance" fill={true} className="object-cover" />
                 </div>
               </div>
             </div>
 
             {/* Image 4 */}
-            <div className="aspect-square rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
-              <div className="w-full h-full bg-gradient-to-br from-light-sky-blue/30 to-light-sea-green/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <div className="relative aspect-square w-full max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-light-sky-blue/30 to-light-sea-green/30 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <div className="text-center">
-                  <svg className="w-8 h-8 mx-auto mb-2 text-air-force-blue opacity-70" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
-                  </svg>
-                  <p className="text-gunmetal text-xs font-medium">Instruments</p>
+                      <Image src="/images/Band-art-2.jpeg" alt="Band in Performance" fill={true} className="object-cover" />     
                 </div>
               </div>
             </div>

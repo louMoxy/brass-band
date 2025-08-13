@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Layout, { GradientBackground } from '../components/Layout';
 import SEO from '../components/SEO';
 import Link from 'next/link';
@@ -6,33 +6,115 @@ import { getGlobalData } from '../utils/global-data';
 
 export default function Music({ globalData }) {
   const [currentTrack, setCurrentTrack] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const audioRef = useRef(null);
 
   const tracks = [
     {
       id: 1,
-      title: "Graiguenamanagh Brass Band Beatles Medley",
-      description: "Graiguenamanagh Brass Band Performing in Duiske Abbey on the 17th of December",
-      duration: "3:45",
-      audioSrc: "/audio/o-danny-boy.mp3" 
+      title: "Blue Bayou",
+      duration: "0:50",
+      audioSrc: "/audio/Blue-Bayou.mp3" 
     },
     {
       id: 2,
-      title: "Performing in Duiske Abbey",
-      description: "Graiguenamanagh Brass Band Performing in Duiske Abbey on the 17th of December",
-      duration: "4:12",
-      audioSrc: "/audio/rose-of-mooncoin.mp3"
+      title: "March",
+      duration: "1:05",
+      audioSrc: "/audio/March.mp3"
+    },
+    {
+      id: 3,
+      title: "Yesterday",
+      duration: "1:12",
+      audioSrc: "/audio/Yesterday.mp3"
     }
   ];
 
+  // Audio control functions
   const playTrack = (track) => {
-    setCurrentTrack(track);
+    if (currentTrack?.id === track.id) {
+      // Toggle play/pause for current track
+      if (isPlaying) {
+        audioRef.current?.pause();
+      } else {
+        audioRef.current?.play();
+      }
+    } else {
+      // Play new track
+      setCurrentTrack(track);
+      setIsPlaying(true);
+    }
+  };
+
+  const stopTrack = () => {
+    audioRef.current?.pause();
+    setCurrentTrack(null);
+    setIsPlaying(false);
+    setCurrentTime(0);
+  };
+
+  // Audio event handlers
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleLoadedMetadata = () => setDuration(audio.duration);
+    const handleTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+    const handleEnded = () => {
+      setIsPlaying(false);
+      setCurrentTime(0);
+    };
+
+    audio.addEventListener('loadedmetadata', handleLoadedMetadata);
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('ended', handleEnded);
+
+    return () => {
+      audio.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, [currentTrack]);
+
+  // Auto-play when track changes
+  useEffect(() => {
+    if (currentTrack && audioRef.current) {
+      audioRef.current.src = currentTrack.audioSrc;
+      audioRef.current.load();
+      audioRef.current.play().catch(console.error);
+    }
+  }, [currentTrack]);
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const handleSeek = (event) => {
+    if (!audioRef.current || duration === 0) return;
+    
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const percentage = x / rect.width;
+    const newTime = percentage * duration;
+    
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
   };
 
   return (
     <Layout>
       <SEO 
         title={`Music & Sound Clips - ${globalData.name}`} 
-        description="Listen to the varied repertoire of Graiguenamanagh Brass Band, from classic marches to contemporary arrangements."
       />
       
       <div className="w-full max-w-6xl mx-auto px-6 py-12">
@@ -42,35 +124,6 @@ export default function Music({ globalData }) {
             Music & Sound Clips
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-light-sea-green to-air-force-blue mx-auto rounded-full"></div>
-        </div>
-
-        {/* Repertoire Description */}
-        <div className="mb-16">
-          <div className="bg-white/60 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-air-force-blue/20 shadow-lg">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-gunmetal mb-8 text-center">
-                Our Repertoire
-              </h2>
-              
-              <div className="prose prose-lg max-w-none text-center">
-                <p className="text-lg leading-relaxed text-dark-slate-gray mb-6">
-                  Spanning several decades and many styles, the band&apos;s repertoire is ever growing with 
-                  <span className="font-semibold text-light-sea-green"> over 500 charts</span> in our library.
-                </p>
-                
-                <p className="text-lg leading-relaxed text-dark-slate-gray mb-6">
-                  From the classic marches of the 1940s through to current day brass band charts, we have a 
-                  varied and contemporary repertoire covering the styles of 
-                  <span className="font-semibold text-air-force-blue"> military, swing, Latin and funk</span>.
-                </p>
-                
-                <blockquote className="border-l-4 border-light-sea-green pl-6 my-8 italic text-xl text-gunmetal bg-light-sky-blue/10 py-6 rounded-r-lg">
-                  &quot;It&apos;s not unusual to hear a medley that jumps from &apos;O Danny Boy&apos; to Coldplay — 
-                  with a stop at &apos;The Rose of Mooncoin&apos; along the way.&quot;
-                </blockquote>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Audio Tracks Section */}
@@ -105,7 +158,7 @@ export default function Music({ globalData }) {
                     className="btn-gradient flex items-center justify-center w-12 h-12 rounded-full text-white hover:scale-105 transition-transform duration-200"
                     aria-label={`Play ${track.title}`}
                   >
-                    {currentTrack?.id === track.id ? (
+                    {currentTrack?.id === track.id && isPlaying ? (
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
                       </svg>
@@ -123,7 +176,11 @@ export default function Music({ globalData }) {
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div 
                         className="bg-gradient-to-r from-light-sea-green to-air-force-blue h-2 rounded-full transition-all duration-300"
-                        style={{ width: currentTrack?.id === track.id ? '35%' : '0%' }}
+                        style={{ 
+                          width: currentTrack?.id === track.id && duration > 0 
+                            ? `${(currentTime / duration) * 100}%` 
+                            : '0%' 
+                        }}
                       ></div>
                     </div>
                   </div>
@@ -136,35 +193,71 @@ export default function Music({ globalData }) {
         {/* Current Track Player */}
         {currentTrack && (
           <div className="fixed bottom-6 left-6 right-6 bg-white/95 backdrop-blur-lg rounded-2xl p-6 border border-air-force-blue/30 shadow-2xl z-50">
-            <div className="flex items-center justify-between max-w-6xl mx-auto">
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={() => setCurrentTrack(null)}
-                  className="btn-gradient flex items-center justify-center w-12 h-12 rounded-full text-white"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                  </svg>
-                </button>
+            <div className="max-w-6xl mx-auto">
+              {/* Top Row - Track Info and Controls */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => playTrack(currentTrack)}
+                    className="btn-gradient flex items-center justify-center w-12 h-12 rounded-full text-white"
+                  >
+                    {isPlaying ? (
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                    ) : (
+                      <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                      </svg>
+                    )}
+                  </button>
+                  
+                  <div>
+                    <h4 className="font-bold text-gunmetal">{currentTrack.title}</h4>
+                    <p className="text-dark-slate-gray text-sm">Graiguenamanagh Brass Band</p>
+                  </div>
+                </div>
                 
-                <div>
-                  <h4 className="font-bold text-gunmetal">{currentTrack.title}</h4>
-                  <p className="text-dark-slate-gray text-sm">{currentTrack.description}</p>
+                <div className="flex items-center gap-4">
+                  <span className="text-air-force-blue text-sm font-medium">
+                    {formatTime(currentTime)} / {formatTime(duration)}
+                  </span>
+                  <button
+                    onClick={stopTrack}
+                    className="text-gunmetal hover:text-light-sea-green transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 </div>
               </div>
               
-              <div className="flex items-center gap-4">
-                <span className="text-air-force-blue text-sm font-medium">
-                  0:00 / {currentTrack.duration}
-                </span>
-                <button
-                  onClick={() => setCurrentTrack(null)}
-                  className="text-gunmetal hover:text-light-sea-green transition-colors"
+              {/* Progress Bar */}
+              <div className="w-full relative">
+                <div 
+                  className="w-full bg-gray-200 rounded-full h-3 cursor-pointer hover:bg-gray-300 transition-colors"
+                  onClick={handleSeek}
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                  <div 
+                    className="bg-gradient-to-r from-light-sea-green to-air-force-blue h-3 rounded-full transition-all duration-200"
+                    style={{ 
+                      width: duration > 0 ? `${(currentTime / duration) * 100}%` : '0%' 
+                    }}
+                  >
+                  </div>
+                </div>
+                {/* Playhead - positioned absolutely relative to the progress bar container */}
+                <div 
+                  className="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-5 h-5 bg-white rounded-full shadow-lg border-3 border-air-force-blue transition-all duration-200 hover:scale-110 cursor-pointer z-10"
+                  style={{ 
+                    left: duration > 0 ? `${(currentTime / duration) * 100}%` : '0%' 
+                  }}
+                  onClick={handleSeek}
+                >
+                  {/* Inner dot for better visibility */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-air-force-blue rounded-full"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -198,6 +291,9 @@ export default function Music({ globalData }) {
         variant="small"
         className="absolute bottom-0 opacity-20"
       />
+      
+      {/* Hidden audio element */}
+      <audio ref={audioRef} preload="metadata" />
     </Layout>
   );
 }
