@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Layout, { GradientBackground } from '../components/Layout';
+import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Link from 'next/link';
 import { getGlobalData } from '../utils/global-data';
@@ -187,15 +187,6 @@ export default function Gallery({ globalData }) {
           </div>
         </div>
       )}
-
-      <GradientBackground
-        variant="large"
-        className="fixed top-20 opacity-40"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20"
-      />
     </Layout>
   );
 }

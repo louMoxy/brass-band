@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import Layout, { GradientBackground } from '../components/Layout';
+import Layout from '../components/Layout';
 import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
 import Image from 'next/image';
 
-export default function Index({ globalData }) {
+export default function Index() {
   return (
     <Layout>
       <SEO 
@@ -218,14 +218,6 @@ export default function Index({ globalData }) {
           </div>
         </div>
       </div>
-      <GradientBackground
-        variant="large"
-        className="fixed top-20 opacity-40"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20"
-      />
     </Layout>
   );
 }
